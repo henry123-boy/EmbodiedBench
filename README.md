@@ -36,6 +36,10 @@ We introduce **EmbodiedBench**, a comprehensive benchmark designed to evaluate *
 
 EmbodiedBench is more than a benchmark—it’s a **multifaceted, standardized evaluation platform** that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied agents.  
 
+## 📌 News
+- 2025.03.19, we provided support for several recent MLLMs including "microsoft/Phi-4-multimodal-instruct", 'AIDC-AI/Ovis2-16B', 'AIDC-AI/Ovis2-34B', 'google/gemma-3-12b-it', and fixed some common generated JSON errors.
+- 2025.05.01 EmbodiedBench is accepted to **ICML 2025**!
+
 
 ## 🚀 **Key Features** 
 
@@ -334,13 +338,9 @@ python -m embodiedbench.main env=eb-hab model_name='microsoft/Phi-4-multimodal-i
 We have provided a docker file under the Docker folder. 
 
 
-# Update History
-- 2025.03.19, provide support for new MLLMs including "microsoft/Phi-4-multimodal-instruct", 'AIDC-AI/Ovis2-16B', 'AIDC-AI/Ovis2-34B', 'google/gemma-3-12b-it', fix some common generated JSON errors.
-
-
 
 # Acknowledgement
-This repo is based on awesome embodied benchmarks and simulations [Lota-Bench](https://github.com/lbaa2022/LLMTaskPlanning), [ALFRED](https://github.com/askforalfred/alfred), [ai2thor](https://github.com/allenai/ai2thor), [EmbodiedAgentInterface](https://github.com/embodied-agent-interface/embodied-agent-interface), [ML-Llarp](https://github.com/apple/ml-llarp), [Habitat](https://github.com/facebookresearch/habitat-lab), [VLMBench](https://github.com/eric-ai-lab/VLMbench), and [RLBench](https://github.com/stepjam/RLBench). Our open-source model deployment is based on [LMDeploy](https://github.com/InternLM/lmdeploy). 
+This repo is based on awesome embodied benchmarks and simulations [Lota-Bench](https://github.com/lbaa2022/LLMTaskPlanning), [ALFRED](https://github.com/askforalfred/alfred), [ai2thor](https://github.com/allenai/ai2thor), [EmbodiedAgentInterface](https://github.com/embodied-agent-interface/embodied-agent-interface), [ML-Llarp](https://github.com/apple/ml-llarp), [Habitat](https://github.com/facebookresearch/habitat-lab), [VLMBench](https://github.com/eric-ai-lab/VLMbench), and [RLBench](https://github.com/stepjam/RLBench). Our open-source model deployment is based on [LMDeploy](https://github.com/InternLM/lmdeploy) and [vllm](https://github.com/vllm-project/vllm). 
 
 # Citation
 ```
