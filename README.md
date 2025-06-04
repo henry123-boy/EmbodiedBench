@@ -313,7 +313,7 @@ lmdeploy serve api_server "OpenGVLab/InternVL2_5-8B" --server-port $port --tp 1
 
 ## Step 2, running the evaluation
 conda activate embench
-export remote_url='IP_address:port/v1' # set the address for access
+export remote_url='IP_address:port/v1' # set the address for access, e.g., http://localhost:8000.
 python -m embodiedbench.main env=eb-hab model_name=OpenGVLab/InternVL2_5-8B exp_name='baseline' 
 ```
 You can also refer to [LMDeploy](https://github.com/InternLM/lmdeploy) for more details.
