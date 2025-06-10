@@ -276,8 +276,35 @@ You can customize the evaluation using the following flags:
 - **`exp_name`**: Name of the experiment, used in logging.  
 - **`visual_icl`**: Enables visual in-context learning (`False` by default).  
 - **`log_level`**: Sets the logging level (`INFO` by default). Use `DEBUG` for debugging purpose.
+- **`truncate`**: **[Now only for EB-Navigation since other tasks normally don't require chat_history=True]** Enables truncation of conversation history when `chat_history=True` (`False` by default). When enabled, it automatically removes verbose content from previous conversation turns while preserving key information. Only takes effect when `chat_history=True`.
 
 > ⚠️ **Important:** Avoid enabling multiple flags simultaneously from `visual_icl`, `multiview`, `multistep`, and `chat_history` to prevent excessive image inputs and conflicts.  
+
+#### More on "truncate" for EB-Navigation
+
+**🔧 Context Management with Truncate:**  
+For long navigation tasks with `chat_history=True`, the conversation history can become quite lengthy, potentially affecting model performance and exceeding context limits. The `truncate` feature addresses this by preprocessing the message history and truncating repetitive prompt before sending it to the model.
+
+The reason why there might be unnecessary but lengthy prompt is that, we wish to support a "WINDOW_SIZE"(which can be set in corresponding planner.py file) argument when chat_history is set to True. The window will select the last "WINDOW_SIZE" messages before sending to the model. Therefore, we first allow each message to contain system prompt and then truncate all of them except the last message. This way, we avoid the case that there will be no system prompt when message length exceeds "WINDOW_SIZE", if system prompt is only included in the first message.
+
+**Usage Example:**
+```bash
+# Enable chat history with truncation for better context management
+conda activate embench_nav
+python -m embodiedbench.main env=eb-nav model_name=gpt-4o chat_history=True truncate=True exp_name='nav_with_truncation'
+
+# Compare with standard chat history (without truncation)
+python -m embodiedbench.main env=eb-nav model_name=gpt-4o chat_history=True truncate=False exp_name='nav_standard_history'
+
+# Standard evaluation without chat history (truncate has no effect)
+python -m embodiedbench.main env=eb-nav model_name=gpt-4o chat_history=False exp_name='nav_no_history'
+```
+
+**When to use `truncate=True`:**
+- Long navigation episodes (>10 steps) with `chat_history=True`
+- Models with limited context windows
+- When experiencing performance degradation due to overly long conversation history
+- To reduce API costs for proprietary models by managing token usage
 
 ---
 
