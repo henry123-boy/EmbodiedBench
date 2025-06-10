@@ -13,3 +13,4 @@ resolution: 500
 exp_name: navigation_baseline
 visual_icl: False
 tp: 1
+truncate: True

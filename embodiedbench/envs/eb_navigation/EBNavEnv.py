@@ -389,7 +389,7 @@ class EBNavigationEnv(gym.Env):
                 # image_path = 'episode_{}_step_{}_{}.png'.format(self._current_episode_num, self._current_step, time_stamp)
                 image_path = os.path.join(self.log_path, 'episode_{}_step_{}_{}_front_bb.png'.format(episode_idx, self._current_step, time_stamp))
                 # if self.target_only:
-                #     draw_target_box(img, self.env.last_event.instance_detections2D, self.episode_data["targetObjectIds"], image_path)
+                # draw_target_box(img, self.env.last_event.instance_detections2D, self.episode_data["targetObjectIds"], image_path)
                 # else:
                 draw_boxes(img,self.env.last_event.instance_detections2D, image_path)
                 # img.save(image_path)

@@ -8,7 +8,7 @@ import json
 # from lmdeploy import pipeline, GenerationConfig, PytorchEngineConfig
 from openai import OpenAI
 from embodiedbench.planner.planner_config.generation_guide import llm_generation_guide, vlm_generation_guide
-from embodiedbench.planner.planner_utils import local_image_to_data_url
+from embodiedbench.planner.planner_utils import local_image_to_data_url, truncate_message_prompts
 # from embodiedbench.planner.eb_navigation.RemoteModel_claude import RemoteModel
 from embodiedbench.planner.remote_model import RemoteModel
 from embodiedbench.planner.custom_model import CustomModel
@@ -22,13 +22,14 @@ template_lang = template_lang
 MESSAGE_WINDOW_LEN = 5
 
 class EBNavigationPlanner():
-    def __init__(self, model_name = '', model_type = 'remote', actions = [], system_prompt = '', examples = '', n_shot=1, obs_key='head_rgb', chat_history=False, language_only=False, multiview = False, multistep = False, visual_icl = False, tp=1, kwargs={}):
+    def __init__(self, model_name = '', model_type = 'remote', actions = [], system_prompt = '', examples = '', n_shot=1, obs_key='head_rgb', chat_history=False, language_only=False, multiview = False, multistep = False, visual_icl = False, tp=1, truncate=False, kwargs={}):
         self.model_name = model_name
         self.model_type = model_type
         self.obs_key = obs_key
         self.system_prompt = system_prompt
         self.n_shot = n_shot
         self.chat_history = chat_history # whether to includ all the chat history for prompting
+        self.truncate = truncate # whether to truncate message history when chat_history is True
         self.set_actions(actions)
         self.planner_steps = 0
         self.output_json_error = 0
@@ -261,9 +262,14 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
         out = out.replace('\"s ', "\'s ")
         out = out.replace('```json', '').replace('```', '')
         logger.debug(f"Model Output:\n{out}\n")
-        action, _ = self.json_to_action(out)
         self.planner_steps += 1
-        return action, out
+        action, valid = self.json_to_action(out)
+        if valid:
+            return action, out
+        else:
+            out = '''{"visual_state_description":"invalid json, random action", "reasoning_and_reflection":"invalid json, random action",
+                   "language_plan":"invalid json, random action"}'''
+            return action, out
 
 
     def act(self, observation, user_instruction):
@@ -284,14 +290,19 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
             else:
                 self.episode_messages = self.get_message(obs, prompt)
         
-        for entry in self.episode_messages:
+        # Apply truncation if chat_history and truncate are both True
+        messages_to_send = self.episode_messages
+        if self.chat_history and self.truncate:
+            messages_to_send = truncate_message_prompts(self.episode_messages)
+        
+        for entry in messages_to_send:
             for content_item in entry["content"]:
                 if content_item["type"] == "text":
                     text_content = content_item["text"]
                     logger.debug(f"Model Input:\n{text_content}\n")
 
         try:
-            out = self.model.respond(self.episode_messages)
+            out = self.model.respond(messages_to_send)
         except Exception as e:
             print(e)
             if 'qwen' in self.model_name:

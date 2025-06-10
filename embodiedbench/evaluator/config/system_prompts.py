@@ -92,8 +92,8 @@ After the target object appears, start navigation and avoid using rotation until
 
 5. *** Do not complete task too early until you can not move any closer to the object, i.e. try to be as close as possible.
 
-----------
-
 {}
+
+----------
 
 '''

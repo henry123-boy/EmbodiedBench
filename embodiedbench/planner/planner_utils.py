@@ -223,3 +223,57 @@ def local_image_to_data_url(image_path):
 
     # Construct the data URL
     return f"data:{mime_type};base64,{base64_encoded_data}"
+
+
+def truncate_message_prompts(message_history: list):
+    """
+    Traverse the message list and truncate the part before "------------" in the text content of all messages except the last one
+    
+    Args:
+        message_history: Message list, each message contains role and content
+        
+    Returns:
+        list: Processed message list
+    """
+    if not message_history:
+        return message_history
+        
+    # Create a deep copy to avoid modifying the original data
+    processed_messages = []
+    
+    # Process all messages except the last one
+    for i, message in enumerate(message_history):
+        if i == len(message_history) - 1:
+            # Keep the last message unchanged
+            processed_messages.append(message)
+        else:
+            # Process current message
+            processed_message = {
+                "role": message.get("role", ""),
+                "content": []
+            }
+            
+            # Traverse content list
+            for content_item in message.get("content", []):
+                if content_item.get("type") == "text":
+                    # Process text type content
+                    text_content = content_item.get("text", "")
+                    
+                    # Look for "----------" separator
+                    if "----------" in text_content:
+                        # Truncate content before separator, keep content after separator
+                        truncated_text = text_content.split("----------")[1]
+                    else:
+                        # If no separator found, keep original text
+                        truncated_text = text_content
+                        
+                    processed_content_item = content_item.copy()
+                    processed_content_item["text"] = truncated_text
+                    processed_message["content"].append(processed_content_item)
+                else:
+                    # Directly copy non-text type content
+                    processed_message["content"].append(content_item.copy())
+            
+            processed_messages.append(processed_message)
+    
+    return processed_messages
