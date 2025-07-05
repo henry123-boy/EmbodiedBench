@@ -127,7 +127,7 @@ class ThorConnector(ThorEnv):
         elif instruction.startswith("drop"):
             ret = self.drop()
         else:
-            assert False, 'instruction not supported'
+            ret = 'instruction not supported'
 
         if not self.last_event.metadata['lastActionSuccess']:
             log.warning(f"llm_skill_interact failed")
