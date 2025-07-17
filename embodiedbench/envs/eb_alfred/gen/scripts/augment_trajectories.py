@@ -15,8 +15,8 @@ import threading
 import time
 import copy
 import random
-from embodiedbench.envs.eb_alfred.utils.video_util import VideoSaver
-from embodiedbench.envs.eb_alfred.utils.py_util import walklevel
+from embodiedbench.envs.eb_alfred.gen.utils.video_util import VideoSaver
+from embodiedbench.envs.eb_alfred.gen.utils.py_util import walklevel
 from embodiedbench.envs.eb_alfred.env.thor_env import ThorEnv
 
 

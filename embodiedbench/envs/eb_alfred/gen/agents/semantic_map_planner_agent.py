@@ -1,9 +1,9 @@
 import glob
 import cv2
-import embodiedbench.envs.eb_alfred.constants
-from embodiedbench.envs.eb_alfred.agents.agent_base import AgentBase
-from embodiedbench.envs.eb_alfred.agents.plan_agent import PlanAgent
-from embodiedbench.envs.eb_alfred.game_states.planned_game_state import PlannedGameState
+import embodiedbench.envs.eb_alfred.gen.constants as constants
+from embodiedbench.envs.eb_alfred.gen.agents.agent_base import AgentBase
+from embodiedbench.envs.eb_alfred.gen.agents.plan_agent import PlanAgent
+from embodiedbench.envs.eb_alfred.gen.game_states.planned_game_state import PlannedGameState
 
 
 class SemanticMapPlannerAgent(AgentBase):

@@ -6,11 +6,11 @@ import time
 import cv2
 import numpy as np
 
-import embodiedbench.envs.eb_alfred.constants
-from embodiedbench.envs.eb_alfred.graph import graph_obj
-from embodiedbench.envs.eb_alfred.utils import game_util
-from embodiedbench.envs.eb_alfred.utils.py_util import SetWithGet
-from embodiedbench.envs.eb_alfred.utils.image_util import compress_mask
+import embodiedbench.envs.eb_alfred.gen.constants as constants
+from embodiedbench.envs.eb_alfred.gen.graph import graph_obj
+from embodiedbench.envs.eb_alfred.gen.utils import game_util
+from embodiedbench.envs.eb_alfred.gen.utils.py_util import SetWithGet
+from embodiedbench.envs.eb_alfred.gen.utils.image_util import compress_mask
 
 
 class GameStateBase(object):

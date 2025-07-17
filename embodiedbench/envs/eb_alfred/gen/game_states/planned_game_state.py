@@ -1,11 +1,11 @@
 import copy
 import json
 import os
-import embodiedbench.envs.eb_alfred.constants
-from embodiedbench.envs.eb_alfred.game_states.game_state_base import GameStateBase
-from embodiedbench.envs.eb_alfred.planner import ff_planner_handler
-from embodiedbench.envs.eb_alfred.utils import game_util
-from embodiedbench.envs.eb_alfred.utils import py_util
+import embodiedbench.envs.eb_alfred.gen.constants as constants
+from embodiedbench.envs.eb_alfred.gen.game_states.game_state_base import GameStateBase
+from embodiedbench.envs.eb_alfred.gen.planner import ff_planner_handler
+from embodiedbench.envs.eb_alfred.gen.utils import game_util
+from embodiedbench.envs.eb_alfred.gen.utils import py_util
 from abc import ABC
 
 

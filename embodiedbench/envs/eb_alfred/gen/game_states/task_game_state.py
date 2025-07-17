@@ -1,9 +1,9 @@
 import os
 import random
-import embodiedbench.envs.eb_alfred.constants
-import embodiedbench.envs.eb_alfred.goal_library as glib
-from embodiedbench.envs.eb_alfred.game_states.planned_game_state import PlannedGameState
-from embodiedbench.envs.eb_alfred.utils import game_util
+import embodiedbench.envs.eb_alfred.gen.constants as constants
+import embodiedbench.envs.eb_alfred.gen.goal_library as glib
+from embodiedbench.envs.eb_alfred.gen.game_states.planned_game_state import PlannedGameState
+from embodiedbench.envs.eb_alfred.gen.utils import game_util
 
 
 class TaskGameState(PlannedGameState):

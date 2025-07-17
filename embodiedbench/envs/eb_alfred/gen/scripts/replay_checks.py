@@ -9,7 +9,7 @@ import numpy as np
 import shutil
 import time
 from embodiedbench.envs.eb_alfred.env.thor_env import ThorEnv
-from embodiedbench.envs.eb_alfred.utils.replay_json import replay_json
+from embodiedbench.envs.eb_alfred.gen.utils.replay_json import replay_json
 
 
 JSON_FILENAME = "traj_data.json"

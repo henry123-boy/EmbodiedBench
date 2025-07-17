@@ -7,8 +7,8 @@ import subprocess
 import time
 
 import constants
-from embodiedbench.envs.eb_alfred.utils import game_util
-from embodiedbench.envs.eb_alfred.utils import py_util
+from embodiedbench.envs.eb_alfred.gen.utils import game_util
+from embodiedbench.envs.eb_alfred.gen.utils import py_util
 
 DEBUG = False
 

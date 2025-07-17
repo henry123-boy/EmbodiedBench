@@ -1,12 +1,12 @@
 import copy
 import sys
-import embodiedbench.envs.eb_alfred.constants
+import embodiedbench.envs.eb_alfred.gen.constants as constants
 import numpy as np
-from embodiedbench.envs.eb_alfred.game_states.game_state_base import GameStateBase
-from embodiedbench.envs.eb_alfred.game_states.planned_game_state import PlannedGameState
-from embodiedbench.envs.eb_alfred.game_states.task_game_state import TaskGameState
-from embodiedbench.envs.eb_alfred.utils import bb_util
-from embodiedbench.envs.eb_alfred.utils import game_util
+from embodiedbench.envs.eb_alfred.gen.game_states.game_state_base import GameStateBase
+from embodiedbench.envs.eb_alfred.gen.game_states.planned_game_state import PlannedGameState
+from embodiedbench.envs.eb_alfred.gen.game_states.task_game_state import TaskGameState
+from embodiedbench.envs.eb_alfred.gen.utils import bb_util
+from embodiedbench.envs.eb_alfred.gen.utils import game_util
 
 
 class TaskGameStateFullKnowledge(TaskGameState):

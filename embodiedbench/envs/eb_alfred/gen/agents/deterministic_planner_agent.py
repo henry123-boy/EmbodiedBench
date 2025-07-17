@@ -1,4 +1,4 @@
-from embodiedbench.envs.eb_alfred.agents.semantic_map_planner_agent import SemanticMapPlannerAgent
+from embodiedbench.envs.eb_alfred.gen.agents.semantic_map_planner_agent import SemanticMapPlannerAgent
 
 
 class DeterministicPlannerAgent(SemanticMapPlannerAgent):

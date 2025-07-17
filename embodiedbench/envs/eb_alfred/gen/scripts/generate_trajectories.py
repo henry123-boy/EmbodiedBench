@@ -14,12 +14,12 @@ import pandas as pd
 from collections import OrderedDict
 from datetime import datetime
 
-import embodiedbench.envs.eb_alfred.constants
-from embodiedbench.envs.eb_alfred.agents.deterministic_planner_agent import DeterministicPlannerAgent
+import embodiedbench.envs.eb_alfred.gen.constants as constants
+from embodiedbench.envs.eb_alfred.gen.agents.deterministic_planner_agent import DeterministicPlannerAgent
 from embodiedbench.envs.eb_alfred.env.thor_env import ThorEnv
-from embodiedbench.envs.eb_alfred.game_states.task_game_state_full_knowledge import TaskGameStateFullKnowledge
-from embodiedbench.envs.eb_alfred.utils.video_util import VideoSaver
-from embodiedbench.envs.eb_alfred.utils.dataset_management_util import load_successes_from_disk, load_fails_from_disk
+from embodiedbench.envs.eb_alfred.gen.game_states.task_game_state_full_knowledge import TaskGameStateFullKnowledge
+from embodiedbench.envs.eb_alfred.gen.utils.video_util import VideoSaver
+from embodiedbench.envs.eb_alfred.gen.utils.dataset_management_util import load_successes_from_disk, load_fails_from_disk
 
 # params
 RAW_IMAGES_FOLDER = 'raw_images/'
